@@ -4,7 +4,7 @@ _BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$_'
 
 
 def _get_timestamp(dt):
-    return dt.replace(tzinfo=timezone.utc).timestamp() * 1000
+    return dt.timestamp() * 1000
 
 
 def int_to_base64(value):
@@ -34,7 +34,7 @@ def base64_to_int(s):
 
 def datetime_to_base64(dt):
     """Converts datetime to base64.
-    >>> datetime_to_base64(datetime(2019, 2, 4, 6, 0, 0))
+    >>> datetime_to_base64(datetime(2019, 2, 4, 4, 0, 0))
     'Wi3F4sA'
     """
     ts = int(_get_timestamp(dt))
@@ -44,7 +44,7 @@ def datetime_to_base64(dt):
 def base64_to_datetime(s):
     """Converts base64 to datetime.
     >>> base64_to_datetime('Wi3F4sA')
-    datetime.datetime(2019, 2, 4, 6, 0)
+    datetime.datetime(2019, 2, 4, 4, 0)
     """
     ts = base64_to_int(s) / 1000
-    return datetime.utcfromtimestamp(ts)
+    return datetime.fromtimestamp(ts)
