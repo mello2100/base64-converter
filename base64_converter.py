@@ -1,3 +1,11 @@
+"""
+This is the module "base64_converter".
+
+This module provides methods that helps converting values
+to and from base64 strings.
+"""
+
+
 from datetime import timezone, datetime
 
 _BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$_'
