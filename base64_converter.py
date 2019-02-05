@@ -7,6 +7,7 @@ to and from base64 strings.
 
 
 from datetime import timezone, datetime
+import decimal
 
 _BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$_'
 
@@ -19,11 +20,13 @@ def int_to_base64(value):
     """Converts int to base64.
     >>> int_to_base64(1549260000000)
     'Wi3F4sA'
+    >>> int_to_base64(18446744073709551615)
+    'P__________'
     """
     s = ''
     while value > 0:
         s = _BASE64[value % 64] + s
-        value = int(value/64)
+        value = int(decimal.Decimal(value)/64)
     return s
 
 
