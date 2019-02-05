@@ -6,8 +6,8 @@ to and from base64 strings.
 """
 
 
-from datetime import timezone, datetime
-import decimal
+from datetime import datetime
+from decimal import Decimal
 
 _BASE64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$_'
 
@@ -17,7 +17,7 @@ def _get_timestamp(dt):
 
 
 def int_to_base64(value):
-    """Converts int to base64.
+    """int_to_base64 converts int to base64.
     >>> int_to_base64(1549260000000)
     'Wi3F4sA'
     >>> int_to_base64(18446744073709551615)
@@ -26,14 +26,16 @@ def int_to_base64(value):
     s = ''
     while value > 0:
         s = _BASE64[value % 64] + s
-        value = int(decimal.Decimal(value)/64)
+        value = int(Decimal(value)/64)
     return s
 
 
 def base64_to_int(s):
-    """Converts base64 to int.
+    """base64_to_int converts base64 to int.
     >>> base64_to_int('Wi3F4sA')
     1549260000000
+    >>> base64_to_int('P__________')
+    18446744073709551615
     """
     result = 0
     for char in s:
@@ -44,7 +46,7 @@ def base64_to_int(s):
 
 
 def datetime_to_base64(dt):
-    """Converts datetime to base64.
+    """datetime_to_base64 converts datetime to base64.
     >>> datetime_to_base64(datetime(2019, 2, 4, 4, 0, 0))
     'Wi3F4sA'
     """
@@ -53,7 +55,7 @@ def datetime_to_base64(dt):
 
 
 def base64_to_datetime(s):
-    """Converts base64 to datetime.
+    """base64_to_datetime converts base64 to datetime.
     >>> base64_to_datetime('Wi3F4sA')
     datetime.datetime(2019, 2, 4, 4, 0)
     """
