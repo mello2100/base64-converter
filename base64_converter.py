@@ -48,3 +48,8 @@ def base64_to_datetime(s):
     """
     ts = base64_to_int(s) / 1000
     return datetime.fromtimestamp(ts)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
